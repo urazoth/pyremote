@@ -10,8 +10,8 @@ def is_argument_missing(value: str, message: str) -> bool:
     return False
 
 
-def add_new_host(alias: str, host: str, key_path: str, login: str):
-    if is_argument_missing(alias, 'alias'):
+def add_new_host(host_alias: str, host: str, key_path: str, login: str):
+    if is_argument_missing(host_alias, 'host_alias'):
         return
 
     if is_argument_missing(host, 'host'):
@@ -23,9 +23,9 @@ def add_new_host(alias: str, host: str, key_path: str, login: str):
     config.create()
     conf = config.load()
 
-    conf[alias] = {'host': host, 'key_path': key_path, 'login': login}
-    print('Added new config for {}'.format(alias))
-    print(conf[alias])
+    conf[host_alias] = {'host': host, 'key_path': key_path, 'login': login}
+    print('Added new config for {}'.format(host_alias))
+    print(conf[host_alias])
 
     config.save(conf)
 
@@ -60,3 +60,12 @@ def run_ssh(alias: str):
         return
     
     sshrunner.run(conf[alias])
+
+def autocompletion():
+    config.create()
+    conf = config.load()
+
+    aliases = [alias for alias in conf]
+    aliases.sort()
+    for alias in aliases:
+        print(alias, end=' ')

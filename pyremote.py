@@ -14,14 +14,17 @@ def main():
     group_main.add_argument('-show', metavar='alias', help='Show alias configuration')
 
     group_add = parser.add_argument_group('add')
-    group_add.add_argument('--alias', metavar='', type=str, help='Hosts alias (one word)')
+    group_add.add_argument('--host-alias', metavar='', type=str, help='Hosts alias (one word)')
     group_add.add_argument('--host', metavar='', type=str, help='Host ip or domain')
     group_add.add_argument('--key-path', metavar='', type=str, help='File with public key')
     group_add.add_argument('--login', metavar='', type=str, help='Login to remote host')
 
-    parser.add_argument('--autocompletion', type=str, help=argparse.SUPPRESS)
+    parser.add_argument('--autocompletion', action='store_true', help=argparse.SUPPRESS)
 
     args = parser.parse_args()
+
+    if args.autocompletion:
+        operations.autocompletion()
 
     if args.alias:
         operations.run_ssh(args.alias)
@@ -35,7 +38,7 @@ def main():
         return
     
     if args.add:
-        operations.add_new_host(args.alias, args.host, args.key_path, args.login)
+        operations.add_new_host(args.host_alias, args.host, args.key_path, args.login)
         return
 
 
