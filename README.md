@@ -5,6 +5,7 @@
 
 # Installation
 1. Add folder with pyremote.py to the PATH or create symlink ```ln -s _path_/pyremote.py pyremote```
+   or on Windows (cmd) ```mklink _path_\pyremote pyremote.py```
 2. To enable autocompletion add to ```~/.bashrc``` command ```source _path_/pyremote-completion.bash```
 
 # Usage
