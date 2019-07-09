@@ -12,6 +12,7 @@ def main():
     group_main.add_argument('-list', action='store_true', help='List saved hosts')
     group_main.add_argument('-add', action='store_true', help='Adds new host')
     group_main.add_argument('-show', metavar='alias', help='Show alias configuration')
+    group_main.add_argument('-delete', metavar='alias', help='Delete alias configuration')
 
     group_add = parser.add_argument_group('add')
     group_add.add_argument('--host-alias', metavar='', type=str, help='Hosts alias (one word)')
@@ -41,6 +42,10 @@ def main():
     
     if args.add:
         operations.add_new_host(args.host_alias, args.host, args.key_path, args.login)
+        return
+    
+    if args.delete:
+        operations.delete(args.delete)
         return
 
 

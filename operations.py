@@ -30,6 +30,14 @@ def add_new_host(host_alias: str, host: str, key_path: str, login: str):
     config.save(conf)
 
 
+def delete(alias: str):
+    config.create()
+    conf = config.load()
+
+    conf.pop(alias, None)
+    config.save(conf)
+
+
 def list_saved_hosts(line_end='\n'):
     config.create()
     conf = config.load()
