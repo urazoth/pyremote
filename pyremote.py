@@ -24,10 +24,12 @@ def main():
     args = parser.parse_args()
 
     if args.autocompletion:
-        operations.autocompletion()
+        operations.list_saved_hosts(line_end=' ')
+        return
 
     if args.alias:
         operations.run_ssh(args.alias)
+        return
 
     if args.list:
         operations.list_saved_hosts()

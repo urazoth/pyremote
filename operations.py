@@ -30,14 +30,14 @@ def add_new_host(host_alias: str, host: str, key_path: str, login: str):
     config.save(conf)
 
 
-def list_saved_hosts():
+def list_saved_hosts(line_end='\n'):
     config.create()
     conf = config.load()
 
     aliases = [alias for alias in conf]
     aliases.sort()
     for alias in aliases:
-        print(alias)
+        print(alias, end=line_end)
 
 
 def show(alias: str):
@@ -60,12 +60,3 @@ def run_ssh(alias: str):
         return
     
     sshrunner.run(conf[alias])
-
-def autocompletion():
-    config.create()
-    conf = config.load()
-
-    aliases = [alias for alias in conf]
-    aliases.sort()
-    for alias in aliases:
-        print(alias, end=' ')
