@@ -55,7 +55,7 @@ def run_ssh(alias: str):
     config.create()
     conf = config.load()
 
-    if not conf[alias]:
+    if alias not in conf:
         print('{} hasn\'t been found'.format(alias))
         return
     
